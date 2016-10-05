@@ -7,7 +7,7 @@ PORT_NUMBER = 8000
 sensor = W1ThermSensor()
 
 
-class webTemp(BaseHTTPServer.BaseHTTPRequestHandler):
+class WebTemp(BaseHTTPServer.BaseHTTPRequestHandler):
     def do_GET(s):
         #temp_c = sensor.get_temperature()
         temp_f = sensor.get_temperature(W1ThermSensor.DEGREES_F)
@@ -19,7 +19,7 @@ class webTemp(BaseHTTPServer.BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     server_class = BaseHTTPServer.HTTPServer
-    httpd = server_class((HOST_NAME, PORT_NUMBER), webTemp)
+    httpd = server_class((HOST_NAME, PORT_NUMBER), WebTemp)
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
